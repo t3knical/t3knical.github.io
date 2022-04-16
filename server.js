@@ -156,7 +156,7 @@ let ORIGIN = ('' + await fs.readFile(".git-credentials")).trim()
 
 async function pushImage() {
     console.log(ORIGIN + "/t3knical/t3knical.github.io")
-	await new Promise((r, t) => exec("git add *;git commit -a -m 'Hourly backup';git push --force " + ORIGIN + "/t3knical/t3knical.github.io", e => e ? t(e) : r()))	
+	await new Promise((r, t) => exec('git add *;git commit -a -m "Hourly backup";git push --force ' + ORIGIN + "/t3knical/t3knical.github.io", e => e ? t(e) : r()))	
     //serve old changes for 5 more mins just to be 100% safe
     let curr = new Uint8Array(CHANGES)
     setTimeout(() => {
