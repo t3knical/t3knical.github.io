@@ -1,6 +1,6 @@
 *.key
 *.pem
-*.gitattributes*
+*.gitattributes
 .git
 .gitignore
 Dockerfile
