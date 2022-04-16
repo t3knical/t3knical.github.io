@@ -156,8 +156,15 @@ let ORIGIN = ('' + await fs.readFile("old_server_stuff/.git-credentials")).trim(
 
 async function pushImage() {
     console.log('excecuting: git add *;git commit -a -m "Hourly backup";git push --force ' + ORIGIN + '/t3knical/t3knical.github.io')
-	await new Promise((resolve, reject) => exec('git add *;git commit -a -m "Hourly backup";git push --force ' + ORIGIN + '/t3knical/t3knical.github.io', e => e ? reject(e) : resolve()))
-    //serve old changes for 5 more mins just to be 100% safe
+	//await new Promise((resolve, reject) => exec('git add *;git commit -a -m "Hourly backup";git push --force ' + ORIGIN + '/t3knical/t3knical.github.io', e => e ? reject(e) : resolve()))
+	
+	//await new Promise((resolve, reject) => shell_exec('git add *;git commit -a -m "Hourly backup";git push --force ' + ORIGIN + '/t3knical/t3knical.github.io', e => e ? reject(e) : resolve()))
+    
+	//await new Promise((resolve, reject) => shell_exec('git add *', e => e ? reject(e) : resolve()))
+	//await new Promise((resolve, reject) => shell_exec('git commit -a -m "Hourly backup"', e => e ? reject(e) : resolve()))
+	//await new Promise((resolve, reject) => shell_exec('git push --force ' + ORIGIN + '/t3knical/t3knical.github.io', e => e ? reject(e) : resolve()))
+	
+	//serve old changes for 5 more mins just to be 100% safe
     let curr = new Uint8Array(CHANGES)
     setTimeout(() => {
         //after 5 minutes, remove all old changes. Where there is a new change, curr[i] != CHANGES[i] and so it will be kept, but otherwise, remove
@@ -191,7 +198,7 @@ setInterval(async function () {
         c.send(buf)
     }
 	// 120 (10 mins), 120x5000/1000/60 = 10 mins
-    if (I % 60 == 0) {
+    if (I % 30 == 0) {
         try {
             await pushImage()
             console.log("[" + new Date().toISOString() + "] Successfully saved r/place!")
