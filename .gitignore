@@ -1,5 +1,8 @@
+*.key
 *.pem
 blacklist.txt
 cooldown_overrides.txt
 vip.txt
+Classes/
+node_modules/
 t
