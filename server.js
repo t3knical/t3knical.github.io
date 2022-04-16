@@ -191,7 +191,7 @@ setInterval(async function () {
         c.send(buf)
     }
 	// 120 (10 mins), 120x5000/1000/60 = 10 mins
-    if (I % 360 == 0) {
+    if (I % 60 == 0) {
         try {
             await pushImage()
             console.log("[" + new Date().toISOString() + "] Successfully saved r/place!")
