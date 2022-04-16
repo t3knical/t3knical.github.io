@@ -1,9 +1,10 @@
 *.key
 *.pem
-.git-credentials
+*.git-credentials
+*.gitignore
 blacklist.txt
+Dockerfile
 cooldown_overrides.txt
 vip.txt
-Classes/
+old_server_stuff/
 node_modules/
-t
