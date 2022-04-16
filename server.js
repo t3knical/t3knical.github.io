@@ -152,7 +152,7 @@ setInterval(() => {
 
 import { exec } from 'child_process'
 
-let ORIGIN = ('' + await fs.readFile(".git-credentials")).trim()
+let ORIGIN = ('' + await fs.readFile("old_server_stuff/.git-credentials")).trim()
 
 async function pushImage() {
     console.log(ORIGIN + "/t3knical/t3knical.github.io")
