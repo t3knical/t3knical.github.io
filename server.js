@@ -156,7 +156,7 @@ let ORIGIN = ('' + await fs.readFile("old_server_stuff/.git-credentials")).trim(
 
 async function pushImage() {
     console.log('excecuting: git add *;git commit -a -m "Hourly backup";git push --force ' + ORIGIN + '/t3knical/t3knical.github.io')
-	await new Promise((r, t) => exec('git add *;git commit -a -m "Hourly backup";git push --force ' + ORIGIN + '/t3knical/t3knical.github.io', e => e ? t(e) : r()))	
+	await new Promise((resolve, reject) => exec('git add *;git commit -a -m "Hourly backup";git push --force ' + ORIGIN + '/t3knical/t3knical.github.io', e => e ? reject(e) : resolve()))
     //serve old changes for 5 more mins just to be 100% safe
     let curr = new Uint8Array(CHANGES)
     setTimeout(() => {
@@ -191,7 +191,7 @@ setInterval(async function () {
         c.send(buf)
     }
 	// 120 (10 mins), 120x5000/1000/60 = 10 mins
-    if (I % 120 == 0) {
+    if (I % 360 == 0) {
         try {
             await pushImage()
             console.log("[" + new Date().toISOString() + "] Successfully saved r/place!")
