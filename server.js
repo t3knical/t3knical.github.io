@@ -150,19 +150,24 @@ setInterval(() => {
     NOW = Date.now()
 }, 50)
 
-import { exec } from 'child_process'
+//import { exec } from 'child_process'
+
+import util from 'util';
+import { exec as execNonPromise } from 'child_process';
+const exec = util.promisify(execNonPromise);
 
 let ORIGIN = ('' + await fs.readFile("old_server_stuff/.git-credentials")).trim()
 
-async function pushImage() {
-    console.log('excecuting: git add *;git commit -a -m "Hourly backup";git push --force ' + ORIGIN + '/t3knical/t3knical.github.io')
+async function pushUpdatesToGitHub() {
+	console.log('excecuting: git add *;git commit -a -m "Hourly backup";git push --force ' + ORIGIN + '/t3knical/t3knical.github.io')
+	const { stdout, stderr } = await exec('git add *;git commit -a -m "Hourly backup";git push --force ' + ORIGIN + '/t3knical/t3knical.github.io');
+	console.log('stdout:', stdout);
+	console.error('stderr:', stderr);
+}
+
+async function pushImage() {   
+	pushUpdatesToGitHub()
 	//await new Promise((resolve, reject) => exec('git add *;git commit -a -m "Hourly backup";git push --force ' + ORIGIN + '/t3knical/t3knical.github.io', e => e ? reject(e) : resolve()))
-	
-	//await new Promise((resolve, reject) => shell_exec('git add *;git commit -a -m "Hourly backup";git push --force ' + ORIGIN + '/t3knical/t3knical.github.io', e => e ? reject(e) : resolve()))
-    
-	//await new Promise((resolve, reject) => shell_exec('git add *', e => e ? reject(e) : resolve()))
-	//await new Promise((resolve, reject) => shell_exec('git commit -a -m "Hourly backup"', e => e ? reject(e) : resolve()))
-	//await new Promise((resolve, reject) => shell_exec('git push --force ' + ORIGIN + '/t3knical/t3knical.github.io', e => e ? reject(e) : resolve()))
 	
 	//serve old changes for 5 more mins just to be 100% safe
     let curr = new Uint8Array(CHANGES)
