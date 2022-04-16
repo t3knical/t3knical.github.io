@@ -1,10 +1,12 @@
 *.key
 *.pem
 *.gitattributes*
+.git
+.gitignore
+Dockerfile
 .git-credentials
 .gitignore
 blacklist.txt
-*Dockerfile*
 cooldown_overrides.txt
 vip.txt
 package-lock.json
