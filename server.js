@@ -155,8 +155,8 @@ import { exec } from 'child_process'
 let ORIGIN = ('' + await fs.readFile("old_server_stuff/.git-credentials")).trim()
 
 async function pushImage() {
-    console.log(ORIGIN + "/t3knical/t3knical.github.io")
-	await new Promise((r, t) => exec('git add *;git commit -a -m "Hourly backup";git push --force ' + ORIGIN + "/t3knical/t3knical.github.io", e => e ? t(e) : r()))	
+    console.log('excecuting: git add *;git commit -a -m "Hourly backup";git push --force ' + ORIGIN + '/t3knical/t3knical.github.io')
+	await new Promise((r, t) => exec('git add *;git commit -a -m "Hourly backup";git push --force ' + ORIGIN + '/t3knical/t3knical.github.io', e => e ? t(e) : r()))	
     //serve old changes for 5 more mins just to be 100% safe
     let curr = new Uint8Array(CHANGES)
     setTimeout(() => {
@@ -190,8 +190,8 @@ setInterval(async function () {
     for (let c of wss.clients) {
         c.send(buf)
     }
-	// 300 (5 mins) used to be 720 (12 mins)
-    if (I % 300 == 0) {
+	// 120 (10 mins), 120x5000/1000/60 = 10 mins
+    if (I % 120 == 0) {
         try {
             await pushImage()
             console.log("[" + new Date().toISOString() + "] Successfully saved r/place!")
