@@ -1,10 +1,12 @@
 *.key
 *.pem
+.gitattributes
 .git-credentials
 .gitignore
 blacklist.txt
 Dockerfile
 cooldown_overrides.txt
 vip.txt
+package-lock.json
 old_server_stuff/
 node_modules/
