@@ -169,7 +169,7 @@ let ORIGIN = ('' + await fs.readFile("old_server_stuff/.git-credentials")).trim(
 async function pushUpdatesToGitHub() {
 	//console.log('excecuting: git add *;git commit -a -m "Hourly backup";git push --force ' + ORIGIN + '/t3knical/t3knical.github.io')
 	const { stdout, stderr } = await exec('git add *;git commit -a -m "Hourly backup";git push --force ' + ORIGIN + '/t3knical/t3knical.github.io');
-	console.log('stdout: %s' % stdout);
+	console.log('stdout:', stdout);
 	//console.error('stderr:', stderr);
 }
 
