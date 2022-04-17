@@ -156,7 +156,7 @@ wss.on('connection', async function(p, {headers, url: uri}) {
 let NOW = Date.now()
 setInterval(() => {
     NOW = Date.now()
-}, 50)
+}, 15)
 
 //import { exec } from 'child_process'
 
@@ -169,7 +169,7 @@ let ORIGIN = ('' + await fs.readFile("old_server_stuff/.git-credentials")).trim(
 async function pushUpdatesToGitHub() {
 	//console.log('excecuting: git add *;git commit -a -m "Hourly backup";git push --force ' + ORIGIN + '/t3knical/t3knical.github.io')
 	const { stdout, stderr } = await exec('git add *;git commit -a -m "Hourly backup";git push --force ' + ORIGIN + '/t3knical/t3knical.github.io');
-	console.log('stdout:', stdout);
+	console.log('stdout: %s' % stdout);
 	//console.error('stderr:', stderr);
 }
 
