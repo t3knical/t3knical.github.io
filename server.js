@@ -180,7 +180,8 @@ async function pushImage() {
 	//serve old changes for 10 more mins just to be 100% safe
 	let curr = new Uint8Array(CHANGES)
 	setTimeout(() => {
-		//after 5 minutes, remove all old changes. Where there is a new change, curr[i] != CHANGES[i] and so it will be kept, but otherwise, remove
+		// after 5 minutes, remove all old changes.
+		// Where there is a new change, curr[i] != CHANGES[i] and so it will be kept, but otherwise, remove
 		for (let i = curr.length - 1; i >= 0; i--)if (curr[i] == CHANGES[i]) CHANGES[i] = 255
 	}, 600 * 1000)
 }
