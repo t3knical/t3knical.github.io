@@ -140,7 +140,7 @@ wss.on('connection', async function(p, {headers, url: uri}) {
 		if(data.length < 6)return //bad packet
 		let i = data.readInt32BE(1), c = data[5]
 		if(i >= BOARD.length || c >= PALETTE_SIZE)return //bad packet
-    let cd = cooldowns.get(IP)
+        let cd = cooldowns.get(IP)
 		if(cd > NOW){
 			//reject
 			let data = Buffer.alloc(10)
@@ -155,15 +155,15 @@ wss.on('connection', async function(p, {headers, url: uri}) {
 		CHANGES[i] = c		
 		
 		if (OVERRIDES.has(sha256(IP))) {
-            cooldowns.set(IP, NOW + (CD*6*5) - 1000)
+            cooldowns.set(IP, NOW + (CD * 6 * 5) - 1000)
             //console.log("cooldown for IP: " + IP + " set to: " 0)
         }
         else if (VIP.has(sha256(IP))) {
-            cooldowns.set(IP, NOW + (CD / 2) - 1000)
+            cooldowns.set(IP, NOW + (CD * 6 * 5) - 1000)
             //console.log("cooldown for IP: " + IP + " set to: " + (NOW + (CD / 2) - 1000))
         }
         else {
-            cooldowns.set(IP, NOW + CD - 1000)
+            cooldowns.set(IP, NOW + (CD * 6 * 5) - 1000)
         }		
 		
 		newPos.push(i)
