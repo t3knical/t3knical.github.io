@@ -155,7 +155,7 @@ wss.on('connection', async function(p, {headers, url: uri}) {
 		CHANGES[i] = c		
 		
 		if (OVERRIDES.has(sha256(IP))) {
-            cooldowns.set(IP, NOW)
+            cooldowns.set(IP, NOW + (CD*6*5) - 1000)
             //console.log("cooldown for IP: " + IP + " set to: " 0)
         }
         else if (VIP.has(sha256(IP))) {
