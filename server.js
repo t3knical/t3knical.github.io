@@ -176,12 +176,21 @@ setInterval(() => {
 	NOW = Date.now()
 }, 50)
 
-import { exec } from 'child_process'
+import util from 'util';
+import { exec as execNonPromise } from 'child_process';
+const exec = util.promisify(execNonPromise);
 
 let ORIGIN = (''+await fs.readFile("./old_server_stuff/.git-credentials")).trim()
 
+async function pushUpdatesToGitHub() {
+    console.log('excecuting: git add *;git commit -a -m "Hourly backup";git push --force ' + ORIGIN + '/t3knical/t3knical.github.io')
+    const { stdout, stderr } = await exec('git add *;git commit -a -m "Hourly backup";git push --force ' + ORIGIN + '/t3knical/t3knical.github.io');
+    console.log('stdout:', stdout);
+    //console.error('stderr:', stderr);
+}
+
 async function pushImage(){
-	await new Promise((r, t) => exec("git add *;git commit -a -m 'Hourly backup';git push --force "+ORIGIN+"/t3knical/t3knical.github.io", e => e ? t(e) : r()))
+	await pushUpdatesToGitHub()
 	//serve old changes for 11 more mins just to be 100% safe
 	let curr = new Uint8Array(CHANGES)
 	setTimeout(() => {
