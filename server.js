@@ -194,7 +194,9 @@ setInterval(() => {
 	NOW = Date.now()
 }, 50)
 
-import { exec } from 'child_process'
+import util from 'util';
+import { exec as execNonPromise } from 'child_process';
+const exec = util.promisify(execNonPromise);
 
 let ORIGIN = ('' + await fs.readFile("./old_server_stuff/.git-credentials")).trim()
 
