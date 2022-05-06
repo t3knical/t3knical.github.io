@@ -182,7 +182,7 @@ wss.on('connection', async function (p, { headers, url: uri }) {
 		//console.log("Incoming pixel is being accepted!")
 		//accept
 		CHANGES[i] = c
-		cooldowns.set(IP, NOW + 300000)
+		cooldowns.set(IP, NOW)
 		newPos.push(i)
 		newCols.push(c)
 		//console.log("Incoming pixel has been accepted!")
