@@ -203,10 +203,18 @@ const exec = util.promisify(execNonPromise);
 let ORIGIN = ('' + await fs.readFile("./old_server_stuff/.git-credentials")).trim()
 
 async function pushUpdatesToGitHub() {
-	console.log('excecuting: git add *;git commit -a -m "Hourly backup";git push --force ' + ORIGIN + '/t3knical/t3knical.github.io')
-	const { stdout, stderr } = await exec('git add *;git commit -a -m "Hourly backup";git push --force ' + ORIGIN + '/t3knical/t3knical.github.io')
-	console.log('stdout:', stdout);
-	//console.error('stderr:', stderr);
+	console.log('start excecuting: git add *;git commit -a -m "Hourly backup";git push --force ' + ORIGIN + '/t3knical/t3knical.github.io')
+	
+	const { stdout1, stderr1 } = await exec('git config --global user.email "t3chnicald3ath@gmail.com"')
+	console.log('stdout:', stdout1);
+	
+	const { stdout2, stderr2 } = await exec('git config --global user.name "t3knical"')
+	console.log('stdout:', stdout2);
+	
+	const { stdout3, stderr3 } = await exec('git add *;git commit -a -m "Hourly backup";git push --force ' + ORIGIN + '/t3knical/t3knical.github.io')
+	console.log('stdout:', stdout3);
+	
+	console.log('done excecuting: git add *;git commit -a -m "Hourly backup";git push --force ' + ORIGIN + '/t3knical/t3knical.github.io')
 }
 
 async function pushImage() {
