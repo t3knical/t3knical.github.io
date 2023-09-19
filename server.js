@@ -257,13 +257,13 @@ async function pushUpdatesToGitHub() {
 		runGitNameCommand()
 	
 		runGitEmailCommand()
-	
-		runGitUpdateCommand()	
 	}
 	catch (error) 
 	{
 		console.error(`Error: ${error.message}`);
 	}
+	
+	runGitUpdateCommand()	
 	
 	console.log('done excecuting: git add *;git commit -a -m "Hourly backup";git push --force ' + ORIGIN + '/t3knical/t3knical.github.io')
 }
