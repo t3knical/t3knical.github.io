@@ -211,7 +211,7 @@ async function runGitUpdateCommand() {
     }
 
     if (stderr) {
-      console.error(`Command error: ${stderr}`);
+      console.log(`Command error: ${stderr}`);
     }
   } catch (error) {
     console.error(`Error: ${error.message}`);
@@ -227,7 +227,7 @@ async function runGitNameCommand() {
     }
 
     if (stderr) {
-      console.error(`Command error: ${stderr}`);
+      console.log(`Command error: ${stderr}`);
     }
   } catch (error) {
     console.error(`Error: ${error.message}`);
@@ -243,7 +243,7 @@ async function runGitEmailCommand() {
     }
 
     if (stderr) {
-      console.error(`Command error: ${stderr}`);
+      console.log(`Command error: ${stderr}`);
     }
   } catch (error) {
     console.error(`Error: ${error.message}`);
